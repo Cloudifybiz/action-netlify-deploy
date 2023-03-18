@@ -25,7 +25,7 @@ fi
 export NETLIFY_SITE_ID="${NETLIFY_SITE_ID}"
 export NETLIFY_AUTH_TOKEN="${NETLIFY_AUTH_TOKEN}"
 
-COMMAND="netlify deploy --dir=${BUILD_DIRECTORY} --functions=${FUNCTIONS_DIRECTORY} --message=\"${NETLIFY_DEPLOY_MESSAGE}\""
+COMMAND="netlify deploy --build --dir=${BUILD_DIRECTORY} --functions=${FUNCTIONS_DIRECTORY} --message=\"${NETLIFY_DEPLOY_MESSAGE}\""
 
 if [[ "${NETLIFY_DEPLOY_TO_PROD}" == "true" ]]
 then
