@@ -19,22 +19,6 @@ inputs:
     description: A deploy message
     required: false
     default: ""
-  build_directory:
-    description: Directory where built files are stored
-    required: true
-    default: build
-  functions_directory:
-    description: Directory where built files are stored
-    required: false
-    default: ""
-  install_command:
-    description: Command to install dependencies
-    required: false
-    default: ""
-  build_command:
-    description: Command to build static website
-    required: false
-    default: npm run build
   deploy_alias:
     description: Deployment Subdomain name
     required: false
@@ -58,10 +42,6 @@ runs:
           NETLIFY_SITE_ID: ${{ inputs.NETLIFY_SITE_ID }}
           NETLIFY_DEPLOY_TO_PROD: ${{ inputs.NETLIFY_DEPLOY_TO_PROD }}
           NETLIFY_DEPLOY_MESSAGE: ${{ inputs.NETLIFY_DEPLOY_MESSAGE }}
-          BUILD_DIRECTORY: ${{ inputs.build_directory }}
-          FUNCTIONS_DIRECTORY: ${{ inputs.functions_directory }}
-          INSTALL_COMMAND: ${{ inputs.install_command }}
-          BUILD_COMMAND: ${{ inputs.build_command }}
           DEPLOY_ALIAS: ${{ inputs.deploy_alias }}
 
       
