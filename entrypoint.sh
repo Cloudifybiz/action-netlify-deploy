@@ -2,30 +2,11 @@
 
 set -e
 
-# Run install command
-if [[ -n "${INSTALL_COMMAND}" ]]
-then
-  ${INSTALL_COMMAND}
-elif [[ -f yarn.lock ]]
-then
-  yarn
-else
-  npm i
-fi
-
-# Run build command
-if [[ -n "${BUILD_COMMAND}" ]]
-then
-  ${BUILD_COMMAND}
-else
-  npm run build
-fi
-
 # Deploy to Netlify
 export NETLIFY_SITE_ID="${NETLIFY_SITE_ID}"
 export NETLIFY_AUTH_TOKEN="${NETLIFY_AUTH_TOKEN}"
 
-COMMAND="netlify deploy --build --dir=${BUILD_DIRECTORY} --functions=${FUNCTIONS_DIRECTORY} --message=\"${NETLIFY_DEPLOY_MESSAGE}\""
+COMMAND="netlify deploy --build"
 
 if [[ "${NETLIFY_DEPLOY_TO_PROD}" == "true" ]]
 then
