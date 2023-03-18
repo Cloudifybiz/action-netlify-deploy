@@ -1,6 +1,6 @@
 # Netlify Next.js Deploy, forked by Veloii
 
-This is a simple GitHub Action to deploy a nextjs website to Netlify.
+This is a simple GitHub Action to deploy a next.js website to Netlify.
 
 ## Usage
 
@@ -8,7 +8,7 @@ To use a GitHub action you can just reference it on your Workflow file
 (for more info check [this article by Github](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/configuring-a-workflow))
 
 ```yml
-name: 'My Workflow'
+name: "My Workflow"
 
 on:
   release:
@@ -16,7 +16,7 @@ on:
 
 jobs:
   deploy:
-    name: 'Deploy to Netlify'
+    name: "Deploy to Netlify"
     steps:
       - uses: veloii/action-netlify-deploy@v2.0.0
         with:
@@ -31,14 +31,13 @@ your workflow file.
 
 The inputs this action uses are:
 
-| Name | Required | Default | Description |
-|:----:|:--------:|:-------:|:-----------:|
-| `NETLIFY_AUTH_TOKEN` | `true` | N/A | The token needed to deploy your site ([generate here](https://app.netlify.com/user/applications#personal-access-tokens))|
-| `NETLIFY_SITE_ID` | `true` | N/A | The site to where deploy your site (get it from the API ID on your Site Settings) |
-| `NETLIFY_DEPLOY_MESSAGE` | `false` | '' | An optional deploy message |
-| `NETLIFY_DEPLOY_TO_PROD` | `false` | `false` | Should the site be deployed to production? |
-| `deploy_alias` | `false` | '' | (Optional) [Deployed site alias](https://cli.netlify.com/commands/deploy) |
-
+|           Name           | Required | Default |                                                       Description                                                        |
+| :----------------------: | :------: | :-----: | :----------------------------------------------------------------------------------------------------------------------: |
+|   `NETLIFY_AUTH_TOKEN`   |  `true`  |   N/A   | The token needed to deploy your site ([generate here](https://app.netlify.com/user/applications#personal-access-tokens)) |
+|    `NETLIFY_SITE_ID`     |  `true`  |   N/A   |                    The site to where deploy your site (get it from the API ID on your Site Settings)                     |
+| `NETLIFY_DEPLOY_MESSAGE` | `false`  |   ''    |                                                An optional deploy message                                                |
+| `NETLIFY_DEPLOY_TO_PROD` | `false`  | `false` |                                        Should the site be deployed to production?                                        |
+|      `deploy_alias`      | `false`  |   ''    |                        (Optional) [Deployed site alias](https://cli.netlify.com/commands/deploy)                         |
 
 ### Outputs
 
@@ -60,7 +59,6 @@ The url of the logs.
 
 The url of the live deployed site.
 
-
 ## Example
 
 ### Deploy to production on release
@@ -68,15 +66,15 @@ The url of the live deployed site.
 > You can setup repo secrets to use in your workflows
 
 ```yml
-name: 'Netlify Deploy'
+name: "Netlify Deploy"
 
 on:
   release:
-    types: ['published']
+    types: ["published"]
 
 jobs:
   deploy:
-    name: 'Deploy'
+    name: "Deploy"
     runs-on: ubuntu-latest
 
     steps:
@@ -92,15 +90,15 @@ jobs:
 ### Preview Deploy on pull request
 
 ```yml
-name: 'Netlify Preview Deploy'
+name: "Netlify Preview Deploy"
 
 on:
   pull_request:
-    types: ['opened', 'edited', 'synchronize']
+    types: ["opened", "edited", "synchronize"]
 
 jobs:
   deploy:
-    name: 'Deploy'
+    name: "Deploy"
     runs-on: ubuntu-latest
 
     steps:
@@ -109,7 +107,6 @@ jobs:
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-
 ```
 
 ### Use branch name to deploy
@@ -121,16 +118,16 @@ An action is used to extract the branch name to avoid fiddling with `refs/`. Fin
 Only the default branch is built for simplicity. Use a similar workflow or standard Netlify integration for the production deployment.
 
 ```yml
-name: 'Netlify Previews'
+name: "Netlify Previews"
 
 on:
   push:
-    branches-ignore: 
+    branches-ignore:
       - master
 
 jobs:
   deploy:
-    name: 'Deploy'
+    name: "Deploy"
     runs-on: ubuntu-latest
 
     steps:
@@ -143,7 +140,7 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           deploy_alias: ${{ env.BRANCH_NAME }}
-      
+
       # Creates a status check with link to preview
       - name: Status check
         uses: Sibz/github-status-action@v1.1.1
