@@ -1,7 +1,7 @@
 ---
-name: Netlify Deploy
-author: Jo Colina
-description: Netlify Deploy
+name: Netlify Next.js Deploy
+author: Jo Colina - fork by Veloi
+description: Netlify Deploy, forked to build Next.js
 inputs:
   NETLIFY_AUTH_TOKEN:
     description: Auth token to use with netlify
