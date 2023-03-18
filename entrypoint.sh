@@ -6,6 +6,14 @@ set -e
 export NETLIFY_SITE_ID="${NETLIFY_SITE_ID}"
 export NETLIFY_AUTH_TOKEN="${NETLIFY_AUTH_TOKEN}"
 
+# Run install command
+if [[ -f yarn.lock ]]
+then
+  yarn
+else
+  npm i
+fi
+
 COMMAND="netlify deploy --build"
 
 if [[ "${NETLIFY_DEPLOY_TO_PROD}" == "true" ]]
