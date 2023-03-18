@@ -1,6 +1,6 @@
-# Netlify Deploy
+# Netlify Next.js Deploy, forked by Veloii
 
-This is a simple GitHub Action to deploy a static website to Netlify.
+This is a simple GitHub Action to deploy a nextjs website to Netlify.
 
 ## Usage
 
@@ -18,7 +18,7 @@ jobs:
   deploy:
     name: 'Deploy to Netlify'
     steps:
-      - uses: jsmrcaga/action-netlify-deploy@v2.0.0
+      - uses: veloii/action-netlify-deploy@v2.0.0
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.MY_TOKEN_SECRET }}
           NETLIFY_DEPLOY_TO_PROD: true
@@ -37,10 +37,6 @@ The inputs this action uses are:
 | `NETLIFY_SITE_ID` | `true` | N/A | The site to where deploy your site (get it from the API ID on your Site Settings) |
 | `NETLIFY_DEPLOY_MESSAGE` | `false` | '' | An optional deploy message |
 | `NETLIFY_DEPLOY_TO_PROD` | `false` | `false` | Should the site be deployed to production? |
-| `build_directory` | `false` | `'build'` | The directory where your files are built |
-| `functions_directory` | `false` | N/A | The (optional) directory where your Netlify functions are stored |
-| `install_command` | `false` | Auto-detected | The (optional) command to install dependencies. Runs `yarn` when `yarn.lock` is found; `npm i` otherwise |
-| `build_command` | `false` | `npm run build` | The (optional) command to build static website |
 | `deploy_alias` | `false` | '' | (Optional) [Deployed site alias](https://cli.netlify.com/commands/deploy) |
 
 
@@ -85,7 +81,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - uses: jsmrcaga/action-netlify-deploy@master
+      - uses: veloii/action-netlify-deploy@v2.0.0
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
@@ -109,7 +105,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
-      - uses: jsmrcaga/action-netlify-deploy@v2.0.0
+      - uses: veloii/action-netlify-deploy@v2.0.0
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
@@ -142,7 +138,7 @@ jobs:
 
       # Sets the branch name as environment variable
       - uses: nelonoel/branch-name@v1.0.1
-      - uses: jsmrcaga/action-netlify-deploy@master
+      - uses: veloii/action-netlify-deploy@v2.0.0
         with:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
@@ -164,14 +160,12 @@ In case of already having the deployment ready data - we can easily skip the nvm
 
 ```
 - name: Deploy to Netlify
-  uses: jsmrcaga/action-netlify-deploy@v2.0.0
+  uses: veloii/action-netlify-deploy@v2.0.0
   with:
     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
     NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
     NETLIFY_DEPLOY_MESSAGE: "Deployed from GitHub action"
     NETLIFY_DEPLOY_TO_PROD: true
-    install_command: "echo Skipping installing the dependencies"
-    build_command: "echo Skipping building the web files"
 ```
 
 ## Contributors
