@@ -30,7 +30,7 @@ then
   COMMAND+=" --alias ${DEPLOY_ALIAS}"
 fi
 
-OUTPUT=$(sh -c "$COMMAND" | tee /dev/tty)
+OUTPUT=$(sh -c "$COMMAND")
 
 # Set outputs
 NETLIFY_OUTPUT=$(echo "$OUTPUT")
@@ -39,18 +39,10 @@ NETLIFY_LOGS_URL=$(echo "$OUTPUT" | grep -Eo '(http|https)://app.netlify.com/[a-
 NETLIFY_LIVE_URL=$(echo "$OUTPUT" | grep -Eo '(http|https)://[a-zA-Z0-9./?=_-]*' | grep -Eov "netlify.com" | tail -1) #Unique key: don't containr -- and app.netlify.com
 
 
-echo "NETLIFY_OUTPUT<<EOF" >> $GITHUB_OUTPUT
-echo "$NETLIFY_OUTPUT" >> $GITHUB_OUTPUT
-echo "EOF" >> $GITHUB_OUTPUT
+echo "NETLIFY_OUTPUT=$(echo $NETLIFY_OUTPUT)" >> $GITHUB_OUTPUT
 
-echo "NETLIFY_PREVIEW_URL<<EOF" >> $GITHUB_OUTPUT
-echo "$NETLIFY_PREVIEW_URL" >> $GITHUB_OUTPUT
-echo "EOF" >> $GITHUB_OUTPUT
+echo "NETLIFY_PREVIEW_URL=$(echo $NETLIFY_PREVIEW_URL)" >> $GITHUB_OUTPUT
 
-echo "NETLIFY_LOGS_URL<<EOF" >> $GITHUB_OUTPUT
-echo "$NETLIFY_LOGS_URL" >> $GITHUB_OUTPUT
-echo "EOF" >> $GITHUB_OUTPUT
+echo "NETLIFY_LOGS_URL=$(echo $NETLIFY_LOGS_URL)" >> $GITHUB_OUTPUT
 
-echo "NETLIFY_LIVE_URL<<EOF" >> $GITHUB_OUTPUT
-echo "$NETLIFY_LIVE_URL" >> $GITHUB_OUTPUT
-echo "EOF" >> $GITHUB_OUTPUT
+echo "NETLIFY_LIVE_URL=$(echo $NETLIFY_LIVE_URL)" >> $GITHUB_OUTPUT
