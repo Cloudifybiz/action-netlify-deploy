@@ -14,7 +14,7 @@ inputs:
   NETLIFY_DEPLOY_TO_PROD:
     description: Should the site be deployed to production?
     required: false
-    default: false
+    default: "false"
   NETLIFY_DEPLOY_MESSAGE:
     description: A deploy message
     required: false
@@ -23,15 +23,22 @@ inputs:
     description: Deployment Subdomain name
     required: false
     default: ""
+  WORKING_DIRECTORY:
+    description: Set current working directory
+    default: ""
 outputs:
   NETLIFY_OUTPUT:
     description: netlify command output
+    value: ""
   NETLIFY_PREVIEW_URL:
     description: deployment preview URL
+    value: ""
   NETLIFY_LOGS_URL:
     description: deployment preview logs url
+    value: ""
   NETLIFY_LIVE_URL:
     description: deployment URL
+    value: ""
 runs:
   using: composite
   steps:
@@ -43,7 +50,7 @@ runs:
           NETLIFY_DEPLOY_TO_PROD: ${{ inputs.NETLIFY_DEPLOY_TO_PROD }}
           NETLIFY_DEPLOY_MESSAGE: ${{ inputs.NETLIFY_DEPLOY_MESSAGE }}
           DEPLOY_ALIAS: ${{ inputs.deploy_alias }}
-
+          WORKING_DIRECTORY: ${{ inputs.WORKING_DIRECTORY }}
       
 branding:
   icon: activity
