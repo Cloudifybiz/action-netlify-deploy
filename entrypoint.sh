@@ -30,7 +30,7 @@ then
   COMMAND+=" --alias ${DEPLOY_ALIAS}"
 fi
 
-OUTPUT=$(sh -c "$COMMAND" | tee /dev/tty)
+OUTPUT=$(sh -c "$COMMAND")
 
 # Set outputs
 NETLIFY_OUTPUT=$(echo "$OUTPUT")
