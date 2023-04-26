@@ -7,7 +7,7 @@ export NETLIFY_SITE_ID="${NETLIFY_SITE_ID}"
 export NETLIFY_AUTH_TOKEN="${NETLIFY_AUTH_TOKEN}"
 export WORKING_DIRECTORY="${WORKING_DIRECTORY}"
 
-cd "${WORKING_DIRECTORY}"
+cd "$WORKING_DIRECTORY"
 
 # Run install command
 if [[ -f yarn.lock ]]
