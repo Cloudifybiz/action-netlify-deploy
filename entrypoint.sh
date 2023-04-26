@@ -33,23 +33,23 @@ fi
 OUTPUT=$(sh -c "$COMMAND" | tee /dev/tty)
 
 # Set outputs
-# NETLIFY_OUTPUT=$(echo "$OUTPUT")
-# NETLIFY_PREVIEW_URL=$(echo "$OUTPUT" | grep -Eo '(http|https)://[a-zA-Z0-9./?=_-]*(--)[a-zA-Z0-9./?=_-]*' | tail -1) #Unique key: --
-# NETLIFY_LOGS_URL=$(echo "$OUTPUT" | grep -Eo '(http|https)://app.netlify.com/[a-zA-Z0-9./?=_-]*' | tail -1) #Unique key: app.netlify.com
-# NETLIFY_LIVE_URL=$(echo "$OUTPUT" | grep -Eo '(http|https)://[a-zA-Z0-9./?=_-]*' | grep -Eov "netlify.com" | tail -1) #Unique key: don't containr -- and app.netlify.com
+NETLIFY_OUTPUT=$(echo "$OUTPUT")
+NETLIFY_PREVIEW_URL=$(echo "$OUTPUT" | grep -Eo '(http|https)://[a-zA-Z0-9./?=_-]*(--)[a-zA-Z0-9./?=_-]*' | tail -1) #Unique key: --
+NETLIFY_LOGS_URL=$(echo "$OUTPUT" | grep -Eo '(http|https)://app.netlify.com/[a-zA-Z0-9./?=_-]*' | tail -1) #Unique key: app.netlify.com
+NETLIFY_LIVE_URL=$(echo "$OUTPUT" | grep -Eo '(http|https)://[a-zA-Z0-9./?=_-]*' | grep -Eov "netlify.com" | tail -1) #Unique key: don't containr -- and app.netlify.com
 
-# echo "NETLIFY_OUTPUT<<EOF" >> $GITHUB_ENV
-# echo "$NETLIFY_OUTPUT" >> $GITHUB_ENV
-# echo "EOF" >> $GITHUB_ENV
+echo "NETLIFY_OUTPUT<<EOF" >> $GITHUB_ENV
+echo "$NETLIFY_OUTPUT" >> $GITHUB_ENV
+echo "EOF" >> $GITHUB_ENV
 
-# echo "NETLIFY_PREVIEW_URL<<EOF" >> $GITHUB_ENV
-# echo "$NETLIFY_PREVIEW_URL" >> $GITHUB_ENV
-# echo "EOF" >> $GITHUB_ENV
+echo "NETLIFY_PREVIEW_URL<<EOF" >> $GITHUB_ENV
+echo "$NETLIFY_PREVIEW_URL" >> $GITHUB_ENV
+echo "EOF" >> $GITHUB_ENV
 
-# echo "NETLIFY_LOGS_URL<<EOF" >> $GITHUB_ENV
-# echo "$NETLIFY_LOGS_URL" >> $GITHUB_ENV
-# echo "EOF" >> $GITHUB_ENV
+echo "NETLIFY_LOGS_URL<<EOF" >> $GITHUB_ENV
+echo "$NETLIFY_LOGS_URL" >> $GITHUB_ENV
+echo "EOF" >> $GITHUB_ENV
 
-# echo "NETLIFY_LIVE_URL<<EOF" >> $GITHUB_ENV
-# echo "$NETLIFY_LIVE_URL" >> $GITHUB_ENV
-# echo "EOF" >> $GITHUB_ENV
+echo "NETLIFY_LIVE_URL<<EOF" >> $GITHUB_ENV
+echo "$NETLIFY_LIVE_URL" >> $GITHUB_ENV
+echo "EOF" >> $GITHUB_ENV
