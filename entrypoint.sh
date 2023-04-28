@@ -30,7 +30,7 @@ then
   COMMAND+=" --alias ${DEPLOY_ALIAS}"
 fi
 
-OUTPUT=$(sh -c "$COMMAND")
+OUTPUT=$(sh -c "$COMMAND" | tee /dev/stderr)
 
 function get_output() {
    echo "$OUTPUT" | sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2};?)?)?[mGK]//g" | grep -Po "(?<=$1:)\s*(http|https)://[a-zA-Z0-9./?=_-]*" | tail -1 | xargs
