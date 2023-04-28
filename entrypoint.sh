@@ -32,11 +32,15 @@ fi
 
 OUTPUT=$(sh -c "$COMMAND")
 
+function get_output() {
+   echo "$OUTPUT" | sed -r "s/\x1B\[([0-9]{1,3}(;[0-9]{1,2};?)?)?[mGK]//g" | grep -Po "(?<=$1:)\s*(http|https)://[a-zA-Z0-9./?=_-]*" | tail -1 | xargs
+}
+
 # Set outputs
 NETLIFY_OUTPUT=$(echo "$OUTPUT")
-NETLIFY_PREVIEW_URL=$(echo "$OUTPUT" | grep -Eo '(http|https)://[a-zA-Z0-9./?=_-]*(--)[a-zA-Z0-9./?=_-]*' | tail -1) #Unique key: --
-NETLIFY_LOGS_URL=$(echo "$OUTPUT" | grep -Eo '(http|https)://app.netlify.com/[a-zA-Z0-9./?=_-]*' | tail -1) #Unique key: app.netlify.com
-NETLIFY_LIVE_URL=$(echo "$OUTPUT" | grep -Eo '(http|https)://[a-zA-Z0-9./?=_-]*' | grep -Eov "netlify.com" | tail -1) #Unique key: don't containr -- and app.netlify.com
+NETLIFY_PREVIEW_URL=$(get_output "Website Draft URL")
+NETLIFY_LOGS_URL=$(get_output "Logs")
+NETLIFY_LIVE_URL=$(get_output "Website URL")
 
 
 echo "NETLIFY_OUTPUT=$(echo $NETLIFY_OUTPUT)" >> $GITHUB_OUTPUT
