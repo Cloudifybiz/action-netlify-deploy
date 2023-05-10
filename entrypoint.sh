@@ -44,6 +44,12 @@ NETLIFY_LOGS_URL=$(get_output "Logs")
 NETLIFY_LIVE_URL=$(get_output "Website URL")
 
 
+if [[ -z "${NETLIFY_PREVIEW_URL}" && -z "${NETLIFY_LIVE_URL}" ]]
+then
+  echo "Failed to deploy to Netlify"
+  exit 1
+fi
+
 echo "NETLIFY_OUTPUT=$(echo $NETLIFY_OUTPUT)" >> $GITHUB_OUTPUT
 
 echo "NETLIFY_PREVIEW_URL=$(echo $NETLIFY_PREVIEW_URL)" >> $GITHUB_OUTPUT
