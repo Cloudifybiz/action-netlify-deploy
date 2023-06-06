@@ -31,7 +31,7 @@ fi
 # Save netlify json env variables to a variable
 if [[ -n "${NETLIFY_SITE_ID}" ]]
 then
-  netlify env:list --json --context ${CONTEXT} | jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]"
+  export $(netlify env:list --json --context ${CONTEXT} | jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]")
 fi
 
 COMMAND="netlify deploy --build"
