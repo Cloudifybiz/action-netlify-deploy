@@ -20,6 +20,20 @@ else
   npm i
 fi
 
+CONTEXT="branch-deploy"
+
+# Get contex for env:list
+if [[ "${NETLIFY_DEPLOY_TO_PROD}" == "true" ]]
+then
+  CONTEXT="production"
+fi
+
+# Save netlify json env variables to a variable
+if [[ -n "${NETLIFY_SITE_ID}" ]]
+then
+  netlify env:list --json --context ${CONTEXT} | jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]"
+fi
+
 COMMAND="netlify deploy --build"
 
 if [[ "${NETLIFY_DEPLOY_TO_PROD}" == "true" ]]
