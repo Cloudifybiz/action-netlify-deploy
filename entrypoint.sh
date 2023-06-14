@@ -36,12 +36,18 @@ fi
 
 COMMAND="netlify deploy --build"
 
+ALIAS="${DEPLOY_ALIAS}"
+if [[ -n "${DEPLOY_ALIAS_SUFFIX}" ]]
+then
+  ALIAS+="-${DEPLOY_ALIAS_SUFFIX}"
+fi
+
 if [[ "${NETLIFY_DEPLOY_TO_PROD}" == "true" ]]
 then
   COMMAND+=" --prod"
 elif [[ -n "${DEPLOY_ALIAS}" ]]
 then
-  COMMAND+=" --alias ${DEPLOY_ALIAS}"
+  COMMAND+=" --alias ${ALIAS}"
 fi
 
 exec 5>&1

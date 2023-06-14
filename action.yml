@@ -23,6 +23,9 @@ inputs:
     description: Deployment Subdomain name
     required: false
     default: ""
+  deploy_alias_suffix:
+    description: Suffix to append at end of alias
+    default: "branch"
   WORKING_DIRECTORY:
     description: Set current working directory
     default: ""
@@ -51,6 +54,7 @@ runs:
           NETLIFY_DEPLOY_TO_PROD: ${{ inputs.NETLIFY_DEPLOY_TO_PROD }}
           NETLIFY_DEPLOY_MESSAGE: ${{ inputs.NETLIFY_DEPLOY_MESSAGE }}
           DEPLOY_ALIAS: ${{ inputs.deploy_alias }}
+          DEPLOY_ALIAS_SUFFIX: ${{ inputs.deploy_alias_suffix }}
           WORKING_DIRECTORY: ${{ inputs.WORKING_DIRECTORY }}
       
 branding:
