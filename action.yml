@@ -29,6 +29,9 @@ inputs:
   WORKING_DIRECTORY:
     description: Set current working directory
     default: ""
+  EXTRA_ENV:
+    description: Extra environment variables to pass to the build
+    default: ""
 outputs:
   NETLIFY_OUTPUT:
     description: netlify command output
@@ -56,7 +59,7 @@ runs:
           DEPLOY_ALIAS: ${{ inputs.deploy_alias }}
           DEPLOY_ALIAS_SUFFIX: ${{ inputs.deploy_alias_suffix }}
           WORKING_DIRECTORY: ${{ inputs.WORKING_DIRECTORY }}
-      
+          EXTRA_ENV: ${{ inputs.EXTRA_ENV }}
 branding:
   icon: activity
   color: blue

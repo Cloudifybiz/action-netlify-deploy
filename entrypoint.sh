@@ -6,6 +6,16 @@ set -e
 export NETLIFY_SITE_ID="${NETLIFY_SITE_ID}"
 export NETLIFY_AUTH_TOKEN="${NETLIFY_AUTH_TOKEN}"
 export WORKING_DIRECTORY="${WORKING_DIRECTORY}"
+export EXTRA_ENV="${EXTRA_ENV}"
+
+# Put comma separated env variables into the environment
+if [[ -n "${EXTRA_ENV}" ]]
+then
+  IFS=',' read -ra EXTRA_ENV <<< "$EXTRA_ENV"
+  for i in "${EXTRA_ENV[@]}"; do
+    export "$i"
+  done
+fi
 
 cd "$WORKING_DIRECTORY"
 
