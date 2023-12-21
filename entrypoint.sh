@@ -38,6 +38,11 @@ then
   CONTEXT="production"
 fi
 
+echo Using context: $CONTEXT
+echo Using site id: $NETLIFY_SITE_ID
+echo Using deploy alias: $DEPLOY_ALIAS
+
+
 # Save netlify json env variables to a variable
 if [[ -n "${NETLIFY_SITE_ID}" ]]
 then
