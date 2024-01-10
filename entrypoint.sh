@@ -65,6 +65,8 @@ then
   COMMAND+=" --alias ${ALIAS}"
 fi
 
+echo Running command: $COMMAND
+
 exec 5>&1
 OUTPUT=$(sh -c "$COMMAND" | tee >(cat - >&5))
 
