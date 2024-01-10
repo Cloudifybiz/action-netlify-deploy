@@ -49,6 +49,10 @@ then
   export $(netlify env:list --json --context ${CONTEXT} | jq -r "to_entries|map(\"\(.key)=\(.value|tostring)\")|.[]")
 fi
 
+ls -la
+
+printenv
+
 COMMAND="netlify deploy --build"
 
 ALIAS="${DEPLOY_ALIAS}"
