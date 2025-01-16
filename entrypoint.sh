@@ -42,6 +42,7 @@ echo Using context: $CONTEXT
 echo Using site id: $NETLIFY_SITE_ID
 echo Using deploy alias: $DEPLOY_ALIAS
 
+netlify env:list --json --context
 
 # Save netlify json env variables to a variable
 if [[ -n "${NETLIFY_SITE_ID}" ]]
